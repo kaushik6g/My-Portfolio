@@ -279,6 +279,30 @@
     };  // end ssLightbox
 
 
+   /* Project title links
+    * ------------------------------------------------------ */
+    const ssProjectTitleLinks = function() {
+
+            document.addEventListener('click', function(event) {
+                const target = event.target;
+                if (!(target instanceof Element)) return;
+
+                const clickedTitle = target.closest('.folio-list__item-title');
+                if (!clickedTitle) return;
+
+                const item = clickedTitle.closest('.folio-list__item');
+                const projectLink = item ? item.querySelector('.folio-list__proj-link') : null;
+                if (!projectLink || !projectLink.href) return;
+
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                window.open(projectLink.href, '_blank', 'noopener');
+            }, true);
+
+    }; // end ssProjectTitleLinks
+
+
    /* Alert boxes
     * ------------------------------------------------------ */
     const ssAlertBoxes = function() {
@@ -356,6 +380,7 @@
         ssViewAnimate();
         ssSwiper();
         ssLightbox();
+        ssProjectTitleLinks();
         ssAlertBoxes();
         ssMoveTo();
 
